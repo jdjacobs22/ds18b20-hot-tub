@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    <style>
+      html {
+        font-family: Arial;
+        display: inline-block;
+        margin: 0px auto;
+        text-align: center;
+      }
+      h2 {
+        font-size: 3rem;
+      }
+      p {
+        font-size: 3rem;
+      }
+      .units {
+        font-size: 1.2rem;
+      }
+      .ds-labels {
+        font-size: 1.5rem;
+        vertical-align: middle;
+        padding-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>HOT TUB TEMPERATURE</h2>
+    <p>
+      <i class="fas fa-thermometer-half" style="color: #059e8a"></i>
+      <span class="ds-labels">Temperature Celsius</span>
+      <span id="temperaturec">Please Wait</span>
+      <sup class="units">&deg;C</sup>
+    </p>
+    <p>
+    <i class="fas fa-thermometer-half" style="color: #059e8a"></i>
+    <span class="ds-labels">Temperature Fahrenheit</span>
+    <span id="temperaturef">Please Wait</span>
+    <sup class="units">&deg;F</sup>
+    </p>
+    <!-- <p>
+    <form action="/action_page.php">
+      <input type="text" id="textInput" value="">
+      <label for="temp">Temperature (between 80F and 102F):</label>
+      <input type="range" id="temp" name="temp" min="80" max="102" value="98" onchange="updateTextInput(this.value);">
+      <input type="submit">
+    </form>
+  </p> -->
+    <script>
+      // function updateTextInput(val) {
+      //   document.getElementById('temp').value=val;
+      // }
+
+      setInterval(function () {
+        // console.log('In setInerval C');
+        const tempC = document.getElementById('temperaturec');
+        fetch('http://10.0.0.22/temperaturec')
+          .then((response) => response.text())
+          .then((data) => {
+            // console.log(data);
+            tempC.innerHTML = data;
+          });
+      }, 10000);
+
+      setInterval(function () {
+        // console.log('In setInerval F');
+        const tempF = document.getElementById('temperaturef');
+        fetch('http://10.0.0.22/temperaturef')
+          .then((response) => response.text())
+          .then((data) => {
+            // console.log(data);
+            tempF.innerHTML = data;
+          });
+      }, 10000);
+    </script>
+  </body>
+</html>
