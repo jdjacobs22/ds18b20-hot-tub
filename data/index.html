@@ -58,13 +58,21 @@
       //   document.getElementById('temp').value=val;
       // }
 
+      let tempC = document.getElementById("temperaturec");
+      let tempF = document.getElementById("temperaturef");
+      console.log("tempC = ");
+      console.log(tempC);
+      console.log("");
+
       setInterval(function () {
         // console.log('In setInerval C');
         const tempC = document.getElementById('temperaturec');
-        fetch('http://10.0.0.22/temperaturec')
+        fetch('http://10.0.0.20/temperaturec')
           .then((response) => response.text())
           .then((data) => {
-            // console.log(data);
+            console.log("data = ")
+            console.log(data);
+            console.log("");
             tempC.innerHTML = data;
           });
       }, 10000);
@@ -72,7 +80,7 @@
       setInterval(function () {
         // console.log('In setInerval F');
         const tempF = document.getElementById('temperaturef');
-        fetch('http://10.0.0.22/temperaturef')
+        fetch('http://10.0.0.20/temperaturef')
           .then((response) => response.text())
           .then((data) => {
             // console.log(data);
